@@ -1,8 +1,8 @@
 ##Declarative ipython GUI example
 
-Some experimentation with ipython widgets - specifically building relatively complex interfaces which are reasonably well formatted.
+Some experimentation with ipython widgets - specifically how lay out and format relatively complex interfaces.  
 
-The idea is that you can build an interface using code like this:
+The idea is that you define your interface in columns and rows in a csv file, with an associated json settings file, and then forget about it.  It then lays everything out using flexboxes which keeps everything aligned.
 
 ````
 from gui_template.interface_template import Widget_GUI
