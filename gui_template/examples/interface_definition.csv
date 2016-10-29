@@ -1,0 +1,7 @@
+id,desc,control_type,row_num,col_num,relative_size,min,max,value,height,width,label_width
+var_x,Variance of x,FloatSlider,1,1,1,0,10,1,,,
+num_points,Number of Points,IntSlider,1,2,1,1,10000,1000,,,
+num_x_vars,Number of independent vars,IntSlider,2,1,1,,,,,,
+var_e,Variance of e,FloatSlider,2,2,1,,,,,,
+x_vars,Choose dependent variables,SelectMultiple,3,1,1,,,,,,
+some_text,Arbitrary text,Text,2,3,3,,,Hello,,,
