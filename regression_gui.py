@@ -1,4 +1,4 @@
-from interface_template import Widget_GUI, Model
+from gui_template.interface_template import Widget_GUI
 from IPython.display import display
 
 class Widget_Gui_Regression(Widget_GUI):

@@ -47,12 +47,11 @@ class Widget_GUI:
         return elements
 
     def get_settings(self,settings_path):
-        settings = defaultdict(object)
         if settings_path:   
             with open(settings_path) as data_file:    
                 loaded_settings = json.load(data_file)
 
-        return defaultdict(lambda: None, loaded_settings)
+        return loaded_settings
 
     def show_gui(self):
         """
@@ -99,14 +98,14 @@ class Widget_GUI:
             this_widget = widget_constructor(**args)    
             
             self.widgets[el["id"]] = this_widget
-            label = Label(value=el["desc"], layout=self.layouts["label_layout"])
-            this_widget_group = Box([label,this_widget], layout=self.layouts["label_and_widget_pair_layout"])
+            label = Label(value=el["desc"], layout=self.layouts["label"])
+            this_widget_group = Box([label,this_widget], layout=self.layouts["label_and_widget_pair"])
             
             gui_cols[el["col_num"]-1].append(this_widget_group)
 
         gui_cols = [c for i,c in gui_cols.items()]
 
-        gui_cols = [VBox(c, layout=self.layouts["layout_for_each_col"] ) for c in gui_cols]
+        gui_cols = [VBox(c, layout=self.layouts["layout_each_col"] ) for c in gui_cols]
         
         self.gui = HBox(gui_cols, layout=self.layouts["layout_column_container"])
 
@@ -116,38 +115,9 @@ class Widget_GUI:
         Sets default layouts for widgets 
         """
 
-        self.layouts["single_widget"] = Layout( 
-                        flex='1 1 auto', 
-                        width='50%', 
-                        border = 'solid 1px blue')
-        
-        print "single_widget layout has blue border"
+        for k, v in self.settings.iteritems():
+            self.layouts[k] = Layout(**v)
 
-        self.layouts["label_layout"] = Layout(
-                        flex='1 1 auto', 
-                        width=self.settings["label_width"], 
-                        border = 'solid 1px red')
-        print "label_layout has red border"
-
-        self.layouts["label_and_widget_pair_layout"] = Layout(
-                        display='flex',
-                        flex_flow='row',
-                        justify_content='space-between',
-                        border = 'solid 5px green'
-                    )
-        print "label_and_widget_pair_layout has green border"
-
-        self.layouts["layout_for_each_col"] = Layout(
-                        border='solid 5px yellow', 
-                        flex="1 1 auto", 
-                        width=self.settings["layout_for_each_col_width"],
-                        )
-        print "layout_for_each_col has yellow border"
-
-        self.layouts["layout_column_container"] = Layout(
-                        border='solid 10px purple')
-        print "layout_column_container has purple border"
-    
 
     def run_model_using_parameters():
         """

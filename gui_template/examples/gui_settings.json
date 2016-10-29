@@ -1,1 +1,26 @@
-{"label_width": "100px"}
+{
+    "label": {
+        "border": "solid 0px red", 
+        "flex": "1 1 auto", 
+        "width": "100px"
+    }, 
+    "label_and_widget_pair": {
+        "border": "solid 0px green", 
+        "display": "flex", 
+        "flex_flow": "row", 
+        "justify_content": "space-between"
+    }, 
+    "layout_column_container": {
+        "border": "solid 1px #CEC1D6"
+    }, 
+    "layout_each_col": {
+        "border": "solid 1px #CEC1D6", 
+        "flex": "1 1 auto", 
+        "width": null
+    }, 
+    "single_widget": {
+        "border": "solid 0px blue", 
+        "flex": "1 1 auto", 
+        "width": null
+    }
+}
