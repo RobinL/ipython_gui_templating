@@ -18,7 +18,11 @@ You need to give the interface a [model](https://github.com/RobinL/ipython_gui_t
 I haven't managed to control the layout output effectively yet.  At the moment it's all in a vertical column. But a new more flexible approach to this seems to be coming in [JupyterLab](http://blog.jupyter.org/2016/07/14/jupyter-lab-alpha/)  - see particularly the [video at 22mins in](https://youtu.be/Ejh0ftSjk6g?t=22m10s).
 
 
+###Examples
 
+There are two examples, a very simple proof of concept [here](https://github.com/RobinL/ipython_gui_templating/blob/master/Simplest%20example.ipynb), and a working example with more complex regression simulations [here](https://github.com/RobinL/ipython_gui_templating/blob/master/Regression%20example.ipynb).
+
+The horrid colours are there to help the user understand the relationship between settings and how they affect they layout.  They can be turned off by turning borders off in the settings.json file.
 
 
 
