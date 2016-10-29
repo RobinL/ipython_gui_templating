@@ -6,17 +6,19 @@ from collections import defaultdict
 import json
 
 
-class Widget_GUI:
+class Widget_GUI(object):
 
     def __init__(self, csv_path=None, settings_path=None, model=None):
+        self.model = model
         self.settings = self.get_settings(settings_path)
         self.widgets = {} #Stores a list of all the widgets in the interface
-        self.list_of_csv_cols_to_use_as_arguments = ["min", "max", "value"]
+        self.list_of_csv_cols_to_use_as_arguments = ["min", "max", "value", "continuous_update"]
         self.gui_elements = self.csv_to_gui_elements(csv_path)
         self.parameters = {} #Stores all the parameters from the widets
         self.layouts = {}
         self.set_default_layouts()
         self.generate_gui()
+        self.update_parameter_values()
         self.show_gui()
 
     def csv_to_gui_elements(self, csv_path):
@@ -58,24 +60,33 @@ class Widget_GUI:
         This enables us to make arbitrary alterations to widgets 
         before they're displayed
         """
-        # self.widgets["x_vars"].options = list("abc")
         display(self.gui)
 
     def widget_observer(self, callee):
-        self.update_parameter_values()
-        self.run_model_using_parameters()
 
+        if callee["type"] == "change" and callee["name"] == "value":
+            self.update_parameter_values()
+            self.update_widgets()
+            self.run_model_using_parameters()
+
+
+    def update_widgets(self):
+        """
+        Placeholder in case we need to update widgets after observing
+        """
+        pass
+        
     def update_parameter_values(self):
         """
         Iterates through the widgets, getting parameter values and saving to self.parameters
         """
-        pass
+        for widget_name, widget in self.widgets.iteritems():
+            self.parameters[widget_name] = widget.value
 
     def generate_gui(self):
         """
         Main function that draws the widget GUI in Jupyter
         """
-
 
         def get_widget_constructor_arguments():
             """
@@ -95,7 +106,9 @@ class Widget_GUI:
 
             widget_constructor = getattr(ipywidgets, el["control_type"]) 
             args = get_widget_constructor_arguments()
-            this_widget = widget_constructor(**args)    
+            this_widget = widget_constructor(**args)  
+
+            this_widget.observe(self.widget_observer)  
             
             self.widgets[el["id"]] = this_widget
             label = Label(value=el["desc"], layout=self.layouts["label"])
@@ -119,7 +132,7 @@ class Widget_GUI:
             self.layouts[k] = Layout(**v)
 
 
-    def run_model_using_parameters():
+    def run_model_using_parameters(self):
         """
         Dispatch gui event to model
         """

@@ -8,5 +8,18 @@ class Widget_Gui_Regression(Widget_GUI):
         This enables us to make arbitrary alterations to widgets 
         before they're displayed
         """
-        self.widgets["x_vars"].options = list("abc")
+        # How many 
+        print self.parameters
+        self.widgets["x_vars"].options = ["x{}".format(i+1) for i in range(self.parameters["num_x_vars"])]
+        self.widgets["x_vars"].value = self.widgets["x_vars"].options
+
+        self.widgets["display_elements"].options = ["Snippet of raw data", "Regression results","Paired scatter plots",  "Residual plot"]
+        self.widgets["display_elements"].value = ["Regression results"]
         display(self.gui)
+
+
+    def update_widgets(self):
+
+    	self.widgets["x_vars"].options = ["x{}".format(i+1) for i in range(self.parameters["num_x_vars"])]
+
+

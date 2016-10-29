@@ -1,26 +1,25 @@
 {
     "label": {
-        "border": "solid 0px red", 
+        "border": "solid 5px red", 
         "flex": "1 1 auto", 
         "width": "100px"
     }, 
     "label_and_widget_pair": {
-        "border": "solid 0px green", 
+        "border": "solid 5px green", 
         "display": "flex", 
         "flex_flow": "row", 
         "justify_content": "space-between"
     }, 
     "layout_column_container": {
-        "border": "solid 1px #CEC1D6"
+        "border": "solid 5px yellow"
     }, 
     "layout_each_col": {
-        "border": "solid 1px #CEC1D6", 
+        "border": "solid 5px purple", 
         "flex": "1 1 auto", 
         "width": null
     }, 
     "single_widget": {
-        "border": "solid 0px blue", 
+        "border": "solid 5px blue", 
         "flex": "1 1 auto", 
-        "width": null
-    }
+        "width": null    }
 }
